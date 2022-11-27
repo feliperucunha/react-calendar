@@ -1,0 +1,389 @@
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.calendar-wrapper {
+  display:flex;
+  border: 1px solid $lightBorder;
+  background-color: $lightBackground;
+  border-radius: 12px;
+  height: 600px;
+
+  div {
+    padding: "12px";
+  }
+
+  & header {
+    display: flex;
+    justify-content: space-between;
+    & nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & h2 {
+      text-align: center;
+      width: 250px;
+      margin: 0 .5rem;
+      color: $strongThemeColor;
+    }
+    & > button {
+      margin-top: 10px;
+      margin-right: 10px;
+      color: $notSoStrongThemeColor;
+      outline: none;
+      transition: all .1s linear;
+      &:hover {
+        cursor: pointer;
+        border-color: $alternativeThemeColor;
+        color: $alternativeThemeColor;
+        & svg {
+          border-color: $alternativeThemeColor;
+        }
+      }
+      & svg {
+        width: 32px;
+        height: 32px;
+      }
+      & span {
+        padding: 6px 12px;
+      }
+    }
+  }
+  & h2 {
+    font-size: 2rem;
+  }
+  .calendar-wrapper__calendar-reminders {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    width: 100%;
+    background-color: $strongThemeColor;
+    margin: 0;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    & h2 {
+      font-weight: 200;
+      color: $lightTextColor; 
+    }
+    & h4 {
+      color: $lightAlternativeColor;
+    }
+    & ul {
+      padding: 0;
+      margin-top: 2rem;
+      color: $lightTextColor;
+      overflow-y: auto;
+      width: 100%;
+    }
+    & li {
+      list-style-type:none;
+      font-size: 1.2rem;
+      position: relative;
+      & button {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        color: $lightTextColor;
+        & span {
+          margin-top: 0;
+        }
+      }
+      & div {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.calendar-wrapper__grid-wrapper div:nth-last-child(7n) {
+  background-color: $lighterHoverColor !important;
+}
+
+.calendar-wrapper__grid-wrapper div:nth-last-child(7n-6) {
+  background-color: $lighterHoverColor !important;
+}
+
+.calendar-wrapper__grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: 450px;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  div:nth-last-child(-n+7) {
+    border-bottom: .5px solid $alternativeThemeColor;
+  }
+  div:nth-last-child(1) {
+    border-right: .5px solid $alternativeThemeColor;
+  }
+  & div {
+    position: relative;
+    margin: 0;
+    width: 100px;
+    height: 80px;
+    background-color: $lightBackground;
+    border: .5px solid $alternativeThemeColor;
+    border-bottom: none;
+    border-right: none;
+    transition: all .1s linear;
+    padding: 8px;
+  }
+  & div.active:hover {
+    cursor: pointer;
+    background-color: $hoverColor !important;
+  }
+  & span {
+    align-self: flex-end;
+    margin: 0;
+    width: 100px;
+    height: 20px;
+    color: $lightAlternativeColor;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 4px;
+  }
+  & span.reminder-count {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+    margin-left: 51px;
+    & span {
+      width: auto;
+      padding: 15px 11px;
+      background-color: $lightTextColor;
+      border-radius: 100%;
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba($color: $black, $alpha: 0.3);
+  margin: 0;
+  z-index: 20;
+}
+.modal-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 450px;
+  background-color: $white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 24px 0px;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 25;
+  & div {
+    margin-top: 0;
+  }
+  & label {
+    width: 80%;
+  }
+  & span {
+    font-size: 2rem;
+  }
+  & input, textarea {
+    width: 80%;
+    padding: 8px 8px;
+    border-radius: 8px;
+    margin: 0;
+  }
+  & > button {
+    width: 80%;
+    padding: 8px;
+    color: $white;
+    font-weight: bold;
+    background-color: $notSoStrongThemeColor;
+    border-radius: 12px;
+  }
+  & i {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    z-index: 30;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 3px solid black;
+    transition: all .125s linear;
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+      color: $white;
+    }
+  }
+  & > div {
+    padding-left: 10%;
+    padding-right: 10%;
+    & input {
+      width: 100%;
+    }
+  }
+}
+
+.reminders {
+  height: 20px !important;
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-collapse: collapse;
+}
+
+.reminder-modal-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: $white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 24px 0px;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 25;
+  & i {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    z-index: 30;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 3px solid black;
+    transition: all .125s linear;
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+      color: $white;
+    }
+  }
+}
+.header {
+  color: $lightAlternativeColor;
+  font-weight: bold;
+}
+
+.forecast {
+  font-weight: 200;
+  font-size: 15px;
+  color: $hoverColor;
+}
+
+header {
+  span:nth-child(1) {
+    font-weight: normal;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .calendar-wrapper__grid-wrapper div {
+    width: 60px;
+    height: 80px;
+  }
+
+  .calendar-wrapper__grid-wrapper span {
+    width: 50px;
+  }
+
+  .calendar-wrapper__grid-wrapper span.reminder-count {
+    margin-top: 7px;
+    margin-left: 15px;
+  }
+
+  .calendar-wrapper__grid-wrapper span.reminder-count span {
+    padding: 9px 7px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .calendar-wrapper header > button svg {
+    width: 25px;
+  }
+  .calendar-wrapper {
+    height: 580px;
+  }
+
+  .calendar-wrapper header h2 {
+    width: 150px;
+  }
+
+  .calendar-wrapper__grid-wrapper div {
+    width: 50px;
+    height: 75px;
+  }
+
+  .calendar-wrapper__grid-wrapper span {
+    width: 50px;
+  }
+
+  .calendar-wrapper__grid-wrapper span.reminder-count {
+    margin-top: 7px;
+    margin-left: 15px;
+  }
+
+  .calendar-wrapper__grid-wrapper span.reminder-count span {
+    padding: 9px 7px;
+    font-size: 14px;
+  }
+
+  .calendar-wrapper__grid-wrapper {
+    span {
+      font-size: 15px;
+      width: 42px;
+    }
+  }
+
+  .calendar-wrapper .calendar-wrapper__calendar-reminders {
+    padding: 10px;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .calendar-wrapper {
+    display: block;
+
+    .calendar-wrapper__calendar-reminders {
+      border-bottom-left-radius: 12px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 12px;
+      padding-bottom: 1rem;
+      align-items: inherit;
+
+      h2, h4 {
+        text-align: center;
+      }
+    }
+  }
+  
+}

@@ -1,0 +1,10 @@
+export const reminderText = 'Reminder';
+export const remindersText = 'Reminders';
+export const reminderSuccessMessage = 'Reminder created';
+export const reminderEditMessage = 'Reminder updated';
+export const weatherError = 'No Weather data available or API Key not configured';
+export const requiredError = 'Required Field';
+export const deleteButton = 'Delete';
+export const editButton = 'Edit';
+export const addButton = 'Add';
+export const createButton = 'Create';
